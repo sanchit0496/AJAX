@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch from PHP MySQL</title>
+</head>
+<body>
+    <button id="info" onclick="loadDoc()">Click Here</button>
+    <div id="demo"></div>
+</body>
+
+<script>
+
+   function loadDoc(){
+    var a = new XMLHttpRequest();
+
+    a.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+        let user = JSON.parse(this.responseText);
+        let output = "";
+        
+        for(let i = 0; i < user.length; i++){
+            output += '<ul>' +'<li> ID: ' + user[i].name + '</ul>';
+        }
+        
+        document.getElementById('demo').innerHTML = output;
+      }else if(this.status == 404){
+        document.getElementById('demo').innerHTML = "404 Bro!"
+      }
+    };
+
+    a.open("GET", "users.php", true);
+    a.send();
+
+
+   }
+
+</script>
+
+
+</html>
