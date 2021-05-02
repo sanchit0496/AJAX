@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX 1: Text File</title>
+</head>
+<body>
+    <button id="info" onclick="loadDoc()">Click Here</button>
+    <div id="demo"></div>
+</body>
+
+<script>
+
+   function loadDoc(){
+    var a = new XMLHttpRequest();
+
+    a.onprogress = function(){
+      console.log("READYSTATE : " , a.readyState)
+    }
+
+    a.onerror = function(){
+      console.log("Error Bro");
+    }
+
+    a.onreadystatechange = function(){
+      // console.log('READYSTATE: ', a.readyState)
+      if(this.readyState == 4 && this.status == 200){
+        let user = JSON.parse(this.responseText);
+        let output = "";
+        
+        for(let i = 0; i < user.length; i++){
+            output += '<ul>' +'<li> ID: ' + user[i].id + '</li>' +  '<li> FirstName: ' + user[i].firstName + '</li>' + '<li> Place: ' + user[i].place + '</li>' + '<li> Sibling: ' + user[i].sibling + '</li>' + '</ul>';
+        }
+        
+        document.getElementById('demo').innerHTML = output;
+      }else if(this.status == 404){
+        document.getElementById('demo').innerHTML = "404 Bro!"
+      }
+    };
+
+    a.open("GET", "jsonfile/users.json", true);
+    a.send();
+
+
+   }
+
+</script>
+
+
+</html>
