@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX and JSON Work</title>
+</head>
+<body>
+   
+    <h2>Simple Get</h2>
+    <form action="process.php" method="get">
+      <input type="text" name="name">
+      <input type="submit" value="submit">
+    </form>
+
+    <h2>AJAX Get</h2>
+    <form id="getForm">
+      <input type="text" name="name" id="name1">
+      <input type="submit" value="submit">
+    </form>
+
+    <h2>Simple Post</h2>
+    <form action="process.php" method="post">
+      <input type="text" name="name">
+      <input type="submit" value="submit">
+    </form>
+
+    <h2>AJAX Post</h2>
+    <form id="postForm">
+      <input type="text" name="name" id="name2">
+      <input type="submit" value="submit">
+    </form>
+
+</body>
+
+<script>
+
+  document.getElementById('getForm').addEventListener('submit', getDoc);
+
+  document.getElementById('postForm').addEventListener('submit', postDoc);
+
+   function getDoc(e){
+      e.preventDefault();
+      var name = document.getElementById('name1').value;
+
+      var a = new XMLHttpRequest();
+      a.open("GET", "process.php?name= " + name,  true);
+
+      a.onload = function(){
+        console.log(this.responseText);
+      }
+
+      a.send();
+
+   }
+
+
+   function postDoc(e){
+      e.preventDefault();
+      
+      var name = document.getElementById('name2').value;
+      var params = "name=" + name;
+
+      var a = new XMLHttpRequest();
+      a.open("POST", "process.php",  true);
+      a.setRequestHeader("Content-type", 
+    "application/x-www-form-urlencoded");
+
+      a.onload = function(){
+        console.log(this.responseText);
+      }
+
+      a.send(params);
+
+   }
+
+</script>
+
+
+</html>
