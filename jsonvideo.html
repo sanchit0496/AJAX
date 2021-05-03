@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch from PHP MySQL</title>
+</head>
+
+<body>
+    <input type="button" value ="click" id="btn">
+    <div id="output"></div>
+
+
+</body>
+
+<script>
+
+    // let people = {
+    //     name: "Mohit",
+    //     age: 12,
+    //     address: {
+    //         society: "Gokuldham",
+    //         city: "Delhi"
+    //     },
+    //     sibling: ["Advik", "Myra"]
+    // }
+
+    // let students = [
+    // {
+    //         "name": "Advik",
+    //         "age": 2
+    //     },
+    //     {
+    //         "name": "Myra",
+    //         "age": 1
+    //     },
+    //     {
+    //         "name": "Mohit",
+    //         "age": 4
+    //     }
+    // ];
+
+    // people = JSON.stringify(people);
+    // people = JSON.parse(people);
+    //console.log(people.sibling[1]);
+
+
+        document.getElementById('btn').addEventListener('click', display);
+
+        function display(){
+            let a = new XMLHttpRequest();
+
+            a.onreadystatechange = function(){       
+                if(this.readyState == 4 && this.status == 200){
+                        let response = JSON.parse(this.responseText);
+                        let student = response.students;
+                        let ou = "";
+                        for(let i = 0; i < student.length; i++){
+                            ou += student[i].name + " ";
+                        }
+                        document.getElementById('output').innerHTML = ou;    
+                }
+            };
+
+            a.open('GET', 'students.json', true);
+            a.send();
+        }
+
+
+</script>
+
+</html>
