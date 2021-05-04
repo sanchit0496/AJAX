@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <div id="demo"></div>
+</body>
+
+
+<script>
+
+    document.getElementById('btn').addEventListener('click', greet);
+
+    document.getElementById('btn').addEventListener('click', afterGreet);
+
+    function greet(callback){
+        setTimeout(function(){
+            let name = prompt("Enter Name", "Enter Here");
+            document.getElementById('demo').innerHTML = name;
+            afterGreet();
+        }, 4000);
+    }
+
+   function afterGreet(){
+        setInterval(function(){
+            document.getElementById('demo').innerHTML = "New User is Here";
+        }, 1000);
+   }
+
+
+</script>
+
+</html>
