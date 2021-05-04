@@ -15,24 +15,28 @@
 
 <script>
 
-    document.getElementById('btn').addEventListener('click', greet);
-
-    document.getElementById('btn').addEventListener('click', afterGreet);
-
-    function greet(callback){
+    let names = ["Mohit", "Myra", "Advik", "Aaryan"];
+    
+    function add(name, callback){
         setTimeout(function(){
-            let name = prompt("Enter Name", "Enter Here");
-            document.getElementById('demo').innerHTML = name;
-            afterGreet();
+            names.push(name);
+            console.log("Added");
+            display();
         }, 4000);
     }
 
-   function afterGreet(){
-        setInterval(function(){
-            document.getElementById('demo').innerHTML = "New User is Here";
-        }, 1000);
-   }
-
+    function display(){
+        setTimeout(function(){
+            let ou = "";
+            for(let i = 0; i < names.length; i++){
+                ou += names[i] + " ";
+            }
+            console.log("the display")
+            document.getElementById('demo').innerHTML = ou;
+        }, 2000);
+    }
+    
+add("Aditya", display);
 
 </script>
 
