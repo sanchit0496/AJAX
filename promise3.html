@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Promise</title>
+</head>
+<body>
+    <div id="students">
+
+    </div>
+</body>
+
+<script>
+
+
+const promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        console.log("Hello World");
+        let error = false;
+        if(!error){
+            resolve();
+        }else{
+            reject();
+        }
+        }, 2000);
+});
+
+const promise2 = 100;
+
+const promise3 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        console.log("Hello There");
+        let error = false;
+        if(!error){
+            resolve();
+        }else{
+            reject();
+        }
+        }, 4000);
+});
+
+Promise.all([promise1, promise2, promise3]).then(values => console.log(values));
+
+
+
+
+
+
+
+</script>
+
+
+</html>
